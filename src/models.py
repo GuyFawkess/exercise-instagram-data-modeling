@@ -18,6 +18,8 @@ class User(Base):
     #realaciones
     posts = relationship('Post', back_populates='user')
     comments = relationship('Comment', back_populates='author')
+    followers = relationship('Follower', foreign_keys='followers.user_from_id', backref='followers')
+    followings = relationship('Follower', foreign_keys='followers.user_to_id', backref='followings')
 
 class Post(Base):
     __tablename__ = 'post'
